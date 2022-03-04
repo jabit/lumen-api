@@ -11,7 +11,7 @@ class SearchController extends Controller
 {
 
     /**
-     * deescription.
+     * local search
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
@@ -41,6 +41,12 @@ class SearchController extends Controller
         return response()->json(['error' => 'Unauthorized'], 401, ['X-Header-One' => 'Header Value']);
     }
 
+    /**
+     * take shows from tvmaze API
+     *
+     * @param  $q
+     * @return object
+     */
     public function getShow($q){
 
         $response = Http::get('https://api.tvmaze.com/search/shows?q='.$q);
