@@ -19,15 +19,15 @@ class SearchController extends Controller
     public function search(Request $request){
 
         if($request->getMethod() == "GET"){
-            $q = $request->input('q');
-
-            $searched = Cache::get( 'tvmaze_q' );
 
             // in case API calls exceed the limit, 20 calls every 10 seconds per IP address
             $off = Cache::get( 'tvmaze_off' );
             if($off){
                 return response()->json(['error' => 'Error 429, pleas wait a few seconds after try again'], 429, ['X-Header-One' => 'Header Value']);
             }
+
+            $q = $request->input('q');
+            $searched = Cache::get( 'tvmaze_q' );
 
             if($searched != $q){
                 $data = $this->getShow($q);
