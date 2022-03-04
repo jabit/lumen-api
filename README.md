@@ -1,24 +1,27 @@
-# Lumen PHP Framework
+# Coding Challenge For Backend Developer
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/lumen-framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/lumen-framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/lumen)](https://packagist.org/packages/laravel/lumen-framework)
+The challenge is to create a JSON API, which will allow the consumer to search for TV shows by their name, using a simple query string as a GET parameter like so:
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+https://json-api.local/?q=deadwood
 
-## Official Documentation
+Any other request to the API is invalid and should return the appropriate response.
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+To get to the data, please use the third party service TVMaze, which provides a convenient API to search for movie titles. Their API description can be found here: http://www.tvmaze.com/api.
 
-## Contributing
+Take into account that this third party service has some typo tolerance:
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+i.e. GET /?q=deadwood would return “Deadpool”, “Redwood Kings”, “Deadwood”...
 
-## Security Vulnerabilities
+You should filter these values to be non-case sensitive and non-typo tolerant (only “Deadwood” would be valid).
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+## Please implement the JSON API, using at least
 
-## License
+- PHP 7.x
+- Laravel or Lumen
+- Git 
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## In an optimal case, we would also love to see:
+
+- Optimization of the number of HTTP requests to the third party service (TVMaze)
+- Good structure, practices, readability and maintainability
+- Tests to verify your code
