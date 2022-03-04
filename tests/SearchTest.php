@@ -12,9 +12,7 @@ class SearchTest extends TestCase
     public function test_that_assert_response_is_ok()
     {
         $response = $this->get('/search/?q=deadwood');
-
         $this->assertEquals('200', $response->response->status());
-
     }
 
     /**
@@ -39,7 +37,7 @@ class SearchTest extends TestCase
 
         $results = $search->getShow('deadwood');
 
-        $this->assertCount(1, $results);
+        $this->assertCount(1, (array)$results);
         $this->assertObjectHasAttribute('name', $results[0]->show);
         $this->assertEquals('Deadwood', $results[0]->show->name);
     }
