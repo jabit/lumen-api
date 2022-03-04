@@ -52,6 +52,7 @@ class SearchController extends Controller
         $response = Http::get('https://api.tvmaze.com/search/shows?q='.$q);
         $shows = $response->object();
 
+        // in case API calls exceed the limit
         if($response->status() == 429){
             Cache::put('tvmaze_off', true , Carbon::now()->addSeconds(10));
         }
@@ -63,10 +64,10 @@ class SearchController extends Controller
             }
         }
 
-        $expiresAt = Carbon::now()->addMinutes(60);
         if(Cache::has('tvmaze_q') && Cache::has('tvmaze_shows')){
             Cache::flush();
         }
+        $expiresAt = Carbon::now()->addMinutes(60);
         Cache::put('tvmaze_q', $q , $expiresAt);
         Cache::put('tvmaze_shows', $shows , $expiresAt);
 
