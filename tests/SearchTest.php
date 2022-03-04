@@ -22,8 +22,10 @@ class SearchTest extends TestCase
      */
     public function test_that_request_method_is_get(){
 
-        $response = $this->post('/search/?q=deadwood', ['q' => 'deadwood']);
+        $response = $this->post('/search/', ['q' => 'deadwood']);
+        $this->assertEquals('405', $response->response->status());
 
+        $response = $this->put('/search/', ['q' => 'deadwood']);
         $this->assertEquals('405', $response->response->status());
 
     }
