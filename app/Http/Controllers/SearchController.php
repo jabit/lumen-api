@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
@@ -57,7 +56,11 @@ class SearchController extends Controller
                 unset($shows[$key]);
             }
         }
+
         $expiresAt = Carbon::now()->addMinutes(60);
+        if(Cache::has('tvmaze_q') && Cache::has('tvmaze_shows')){
+            Cache::flush();
+        }
         Cache::put('tvmaze_q', $q , $expiresAt);
         Cache::put('tvmaze_shows', $shows , $expiresAt);
 

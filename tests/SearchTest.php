@@ -3,8 +3,6 @@
 namespace Tests;
 
 use App\Http\Controllers\SearchController;
-use Laravel\Lumen\Testing\DatabaseMigrations;
-use Laravel\Lumen\Testing\DatabaseTransactions;
 
 class SearchTest extends TestCase
 {
