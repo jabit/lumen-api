@@ -13,15 +13,5 @@
 |
 */
 
-use App\Http\Controllers\SearchController;
-
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
-
 $router->get('/search/', ['uses' => 'SearchController@search']);
-//$router->put('/search/{name}', 'SearchController@search');
-//$router->put('/search/{name}', ['uses' => 'SearchController@search']);
-//$router->put('/search/{name}', 'Controller@search');
-//$router->get('/search/{name}', 'SearchController@search');
 
